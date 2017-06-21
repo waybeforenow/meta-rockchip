@@ -22,5 +22,5 @@ S = "${WORKDIR}/git"
 
 do_compile_append () {
 	# copy to default search path
-	cp ${B}/spl/${SPL_BINARY} ${B}/
+	[ -e ${B}/spl/${SPL_BINARY} ] && cp ${B}/spl/${SPL_BINARY} ${B}/
 }
