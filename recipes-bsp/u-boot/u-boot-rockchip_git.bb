@@ -22,5 +22,7 @@ S = "${WORKDIR}/git"
 
 do_compile_append () {
 	# copy to default search path
-	[ -e ${B}/spl/${SPL_BINARY} ] && cp ${B}/spl/${SPL_BINARY} ${B}/
+	if [ $SPL_BINARY ]; then
+		cp ${B}/spl/${SPL_BINARY} ${B}/
+	fi
 }
