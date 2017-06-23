@@ -39,7 +39,7 @@ IMAGE_DEPENDS_rockchip-gpt-img = "parted-native \
 	u-boot-mkimage-native \
 	mtools-native \
 	dosfstools-native \
-	rk-binary-loader \
+	rk-binary-loader:do_deploy \
 	rk-binary-native \
 	virtual/kernel:do_deploy \
 	virtual/bootloader:do_deploy"
