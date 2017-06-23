@@ -11,14 +11,15 @@ SRCREV = "7b3142bfc7b43709b2d09ca00faf85b36f8f74a4"
 S = "${WORKDIR}/git"
 
 do_install () {
-	install -m 0755 "${S}/tools/trust_merger" ${bindir}
-	install -m 0755 "${S}/tools/firmwareMerger" ${bindir}
+	install -d ${D}/${bindir}
+	install -m 0755 "${S}/tools/trust_merger" ${D}/${bindir}
+	install -m 0755 "${S}/tools/firmwareMerger" ${D}/${bindir}
 
-	install -m 0755 "${S}/tools/kernelimage" ${bindir}
-	install -m 0755 "${S}/tools/loaderimage" ${bindir}
+	install -m 0755 "${S}/tools/kernelimage" ${D}/${bindir}
+	install -m 0755 "${S}/tools/loaderimage" ${D}/${bindir}
 
-	install -m 0755 "${S}/tools/mkkrnlimg" ${bindir}
-	install -m 0755 "${S}/tools/resource_tool" ${bindir}
+	install -m 0755 "${S}/tools/mkkrnlimg" ${D}/${bindir}
+	install -m 0755 "${S}/tools/resource_tool" ${D}/${bindir}
 
-	install -m 0755 "${S}/tools/upgrade_tool" ${bindir}
+	install -m 0755 "${S}/tools/upgrade_tool" ${D}/${bindir}
 }
