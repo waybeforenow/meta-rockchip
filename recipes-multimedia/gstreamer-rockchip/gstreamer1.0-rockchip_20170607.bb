@@ -4,6 +4,9 @@
 include gstreamer1.0-rockchip.inc
 
 TAG = "release_${PV}"
-SRC_URI = "git://github.com/rockchip-linux/gstreamer-rockchip.git;tag=${TAG};nobranch=1 "
+SRC_URI = " \
+	git://github.com/rockchip-linux/gstreamer-rockchip.git;tag=${TAG};nobranch=1 \
+	file://build-rename-drmrockchip-to-rkximage.patch \
+"
 
 S = "${WORKDIR}/git"
