@@ -9,8 +9,6 @@ COMPATIBLE_MACHINE = "(rk3036|rk3288|rk3328|rk3399)"
 # There's only hardfp version available
 python __anonymous() {
     if d.getVar("TUNE_FEATURES", True) == "aarch64":
-        if d.getVar("DISTRO_CODENAME", True) != "pyro":
-            d.appendVar("RPROVIDES_rockchip-mali", "libwayland-egl.so()(64bit) libgbm.so()(64bit) libGLESv1_CM.so()(64bit) libGLESv2.so()(64bit) libEGL.so()(64bit) libOpenCL.so()(64bit) ")
         return
     tunes = d.getVar("TUNE_FEATURES", True)
     if not tunes:
