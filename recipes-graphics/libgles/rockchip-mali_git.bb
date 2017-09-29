@@ -27,7 +27,7 @@ PROVIDES += "${@bb.utils.contains("DISTRO_FEATURES", "wayland", " virtual/libway
 S = "${WORKDIR}/git"
 
 SRC_URI = "git://github.com/rockchip-linux/libmali.git;branch=rockchip;"
-SRCREV_pn-${PN} = "f2e1b3f0b93b5217fcbf6b4d6913a494a0700d74"
+SRCREV_pn-${PN} = "796ef53caf01afea545115fad7393d42c78d96aa"
 
 INSANE_SKIP_${PN} = "already-stripped ldflags dev-so"
 
@@ -37,21 +37,21 @@ INHIBIT_PACKAGE_STRIP = "1"
 USE_X11 = "${@bb.utils.contains("DISTRO_FEATURES", "x11", "yes", "no", d)}"
 USE_WL = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "yes", "no", d)}"
 
-MALI_X11_rk3036 = "arm-linux-gnueabihf/libmali-utgard-r6p0.so"
-MALI_WAYLAND_rk3036 = "arm-linux-gnueabihf/libmali-utgard-r7p0-wayland.so"
-MALI_GBM_rk3036 = "arm-linux-gnueabihf/libmali-utgard-r7p0-gbm.so"
+MALI_X11_rk3036 = "arm-linux-gnueabihf/libmali-utgard-400-r6p0.so"
+MALI_WAYLAND_rk3036 = "arm-linux-gnueabihf/libmali-utgard-400-r7p0-wayland.so"
+MALI_GBM_rk3036 = "arm-linux-gnueabihf/libmali-utgard-400-r7p0-gbm.so"
 
-MALI_X11_rk3288 = "arm-linux-gnueabihf/libmali-midgard-r9p0-r0p0.so"
-MALI_WAYLAND_rk3288 = "arm-linux-gnueabihf/libmali-midgard-r13p0-r0p0-wayland.so "
-MALI_GBM_rk3288 = "arm-linux-gnueabihf/libmali-midgard-r13p0-r0p0-gbm.so "
+MALI_X11_rk3288 = "arm-linux-gnueabihf/libmali-midgard-t76x-r9p0-r0p0.so"
+MALI_WAYLAND_rk3288 = "arm-linux-gnueabihf/libmali-midgard-t76x-r13p0-r0p0-wayland.so "
+MALI_GBM_rk3288 = "arm-linux-gnueabihf/libmali-midgard-t76x-r13p0-r0p0-gbm.so "
 
-MALI_X11_rk3328 = "aarch64-linux-gnu/libmali-utgard-2th-r7p0.so"
-MALI_WAYLAND_rk3328 = "aarch64-linux-gnu/libmali-utgard-2th-r7p0-wayland.so"
-MALI_GBM_rk3328 = "aarch64-linux-gnu/libmali-utgard-2th-r7p0-gbm.so"
+MALI_X11_rk3328 = "aarch64-linux-gnu/libmali-utgard-450-r7p0.so"
+MALI_WAYLAND_rk3328 = "aarch64-linux-gnu/libmali-utgard-450-r7p0-wayland.so"
+MALI_GBM_rk3328 = "aarch64-linux-gnu/libmali-utgard-450-r7p0-gbm.so"
 
-MALI_X11_rk3399 = "aarch64-linux-gnu/libmali-midgard-4th-r9p0.so"
-MALI_WAYLAND_rk3399 = "aarch64-linux-gnu/libmali-midgard-4th-r13p0-wayland.so"
-MALI_GBM_rk3399 = "aarch64-linux-gnu/libmali-midgard-4th-r9p0-gbm.so"
+MALI_X11_rk3399 = "aarch64-linux-gnu/libmali-midgard-t86x-r9p0.so"
+MALI_WAYLAND_rk3399 = "aarch64-linux-gnu/libmali-midgard-t86x-r13p0-wayland.so"
+MALI_GBM_rk3399 = "aarch64-linux-gnu/libmali-midgard-t86x-r9p0-gbm.so"
 
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
