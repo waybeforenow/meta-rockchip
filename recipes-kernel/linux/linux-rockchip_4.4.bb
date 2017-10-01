@@ -19,9 +19,3 @@ PV = "${LINUX_VERSION}"
 # Include only supported boards for now
 COMPATIBLE_MACHINE = "(rk3036|rk3288|rk3328|rk3399)"
 deltask kernel_configme
-
-KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
-
-KERNEL_DEVICETREE_excavator-rk3399 = "rockchip/rk3399-sapphire-excavator-linux.dtb"
-KERNEL_DEVICETREE_firefly-rk3399 = "rockchip/rk3399-firefly-linux.dtb"
-KERNEL_DEVICETREE_tinker-rk3288 =  "rk3288-miniarm.dtb"
