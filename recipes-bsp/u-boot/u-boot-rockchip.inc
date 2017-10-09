@@ -9,7 +9,7 @@ LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
 COMPATIBLE_MACHINE = "(rk3036|rk3188|rk3288|rk3328|rk3399)"
 
-DEPENDS = "dtc-native bc-native"
+DEPENDS = "dtc-native bc-native swig-native"
 
 do_compile_append () {
 	# copy to default search path
