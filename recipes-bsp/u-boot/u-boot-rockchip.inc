@@ -11,6 +11,14 @@ COMPATIBLE_MACHINE = "(rk3036|rk3188|rk3288|rk3328|rk3399)"
 
 DEPENDS = "dtc-native bc-native swig-native"
 
+# u-boot will build native python module
+inherit pythonnative
+
+do_compile_prepend () {
+	export STAGING_INCDIR=${STAGING_INCDIR_NATIVE};
+	export STAGING_LIBDIR=${STAGING_LIBDIR_NATIVE};
+}
+
 do_compile_append () {
 	# copy to default search path
 	if [ ${SPL_BINARY} ]; then
