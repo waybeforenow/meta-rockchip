@@ -15,5 +15,5 @@ KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
 
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-rockchip"
 
-IMAGE_FSTYPES = "rockchip-gpt-img"
+IMAGE_FSTYPES += "rockchip-gpt-img"
 IMAGE_CLASSES += "rockchip-gpt-img"
