@@ -83,8 +83,17 @@ IMAGE_CMD_rockchip-gpt-img () {
 
 create_rk_image () {
 
+	# last dd rootfs will extend gpt image to fit the size,
+	# but this will overrite the backup table of GPT
+	# will cause corruption error for GPT
+	IMG_ROOTFS_SIZE=$(stat -L --format="%s" ${IMG_ROOTFS})
+
+	GPTIMG_MIN_SIZE=$(expr $IMG_ROOTFS_SIZE + \( ${LOADER1_SIZE} + ${RESERVED1_SIZE} + ${RESERVED2_SIZE} + ${LOADER2_SIZE} + ${ATF_SIZE} + ${BOOT_SIZE} + 35 \) \* 512 )
+
+	GPT_IMAGE_SIZE=$(expr $GPTIMG_MIN_SIZE \/ 1024 \/ 1024 + 1)
+
 	# Initialize sdcard image file
-	dd if=/dev/zero of=${GPTIMG} bs=1M count=0 seek=${GPTIMG_SIZE}
+	dd if=/dev/zero of=${GPTIMG} bs=1M count=$GPT_IMAGE_SIZE
 
 	# Create partition table
 	parted -s ${GPTIMG} mklabel gpt
@@ -109,7 +118,7 @@ create_rk_image () {
 	parted -s ${GPTIMG} set 4 boot on
 
 	# Create rootfs partition
-	parted -s ${GPTIMG} unit s mkpart rootfs ${ROOTFS_START} 100%
+	parted -s ${GPTIMG} -- unit s mkpart rootfs ${ROOTFS_START} -34s
 
 	parted ${GPTIMG} print
 
@@ -168,7 +177,7 @@ EOF
 	dd if=${WORKDIR}/${BOOT_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${BOOT_START}
 
 	# Burn Rootfs Partition
-	dd if=${IMG_ROOTFS} of=${GPTIMG} seek=${ROOTFS_START}
+	dd if=${IMG_ROOTFS} of=${GPTIMG} conv=notrunc,fsync seek=${ROOTFS_START}
 
 }
 
