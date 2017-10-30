@@ -3,6 +3,8 @@
 
 require recipes-kernel/linux/linux-yocto.inc
 
+DEPENDS += "openssl-native"
+
 SRC_URI = " \
 	git://github.com/rockchip-linux/kernel.git;branch=release-4.4; \
 "
