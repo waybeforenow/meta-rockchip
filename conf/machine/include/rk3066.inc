@@ -6,6 +6,8 @@ SOC_FAMILY = "rk3066"
 require conf/machine/include/tune-cortexa9.inc
 require conf/machine/include/soc-family.inc
 
+MACHINEOVERRIDES_EXTENDER  = "mali-gpu:mali-utgard"
+
 PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
 
 XSERVER = "xserver-xorg \
@@ -22,4 +24,3 @@ IMAGE_FSTYPES += "ext4"
 
 SERIAL_CONSOLES ?= "115200;ttyFIQ0"
 KBUILD_DEFCONFIG = "multi_v7_defconfig"
-

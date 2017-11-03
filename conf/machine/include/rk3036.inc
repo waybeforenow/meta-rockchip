@@ -6,6 +6,8 @@ SOC_FAMILY = "rk3036"
 require conf/machine/include/tune-cortexa7.inc
 require conf/machine/include/soc-family.inc
 
+MACHINEOVERRIDES_EXTENDER  = "mali-gpu:mali-utgard"
+
 PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip"
 PREFERRED_VERSION_linux-rockchip = "4.4"
 

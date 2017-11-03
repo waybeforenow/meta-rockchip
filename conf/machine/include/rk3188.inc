@@ -7,6 +7,8 @@ require conf/machine/include/tune-cortexa9.inc
 require conf/machine/include/soc-family.inc
 PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
 
+MACHINEOVERRIDES_EXTENDER  = "mali-gpu:mali-utgard"
+
 XSERVER = "xserver-xorg \
            xf86-video-fbturbo \
            xf86-input-evdev \
@@ -21,3 +23,4 @@ IMAGE_FSTYPES += "ext4"
 
 SERIAL_CONSOLES ?= "115200;ttyFIQ0"
 KBUILD_DEFCONFIG = "multi_v7_defconfig"
+
