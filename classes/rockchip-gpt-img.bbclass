@@ -93,7 +93,7 @@ create_rk_image () {
 	GPT_IMAGE_SIZE=$(expr $GPTIMG_MIN_SIZE \/ 1024 \/ 1024 + 1)
 
 	# Initialize sdcard image file
-	dd if=/dev/zero of=${GPTIMG} bs=1M count=$GPT_IMAGE_SIZE
+	dd if=/dev/zero of=${GPTIMG} bs=1M count=0 seek=$GPT_IMAGE_SIZE
 
 	# Create partition table
 	parted -s ${GPTIMG} mklabel gpt
