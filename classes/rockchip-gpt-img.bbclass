@@ -24,7 +24,7 @@ UBOOT_IMG = "u-boot.img"
 TRUST_IMG = "trust.img"
 
 GPTIMG_APPEND_rk3036 = "console=tty1 console=ttyS2,115200n8 rw \
-	root=PARTUUID=69dad710-2c rootfstype=ext4 init=/sbin/init"
+	root=PARTUUID=69dad710-2c rootfstype=ext4 init=/sbin/init rootwait"
 GPTIMG_APPEND_rk3288 = "console=tty1 console=ttyS2,115200n8 rw \
 	root=PARTUUID=69dad710-2c rootfstype=ext4 init=/sbin/init"
 GPTIMG_APPEND_rk3328 = "earlycon=uart8250,mmio32,0xff130000 rw \
