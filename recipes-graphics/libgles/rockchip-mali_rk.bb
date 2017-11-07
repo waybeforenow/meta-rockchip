@@ -17,7 +17,7 @@ MALI_TUNE = ""
 MALI_NAME = ""
 
 MALI_X11_rk3036 = "libmali-utgard-400-r7p0.so"
-MALI_WAYLAND_rk3036 = "ibmali-utgard-400-r7p0-wayland.so"
+MALI_WAYLAND_rk3036 = "libmali-utgard-400-r7p0-wayland.so"
 MALI_GBM_rk3036 = "libmali-utgard-400-r7p0-gbm.so"
 
 MALI_X11_rk3288 = "libmali-midgard-t76x-r14p0-r0p0.so"
