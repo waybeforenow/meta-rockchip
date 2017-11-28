@@ -8,19 +8,13 @@ require conf/machine/include/soc-family.inc
 
 MACHINEOVERRIDES_EXTENDER  = "mali-gpu:mali-utgard"
 
-PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
+PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip"
+PREFERRED_VERSION_linux-rockchip = "4.4"
 
-XSERVER = "xserver-xorg \
-           xf86-video-fbturbo \
-           xf86-input-evdev \
-           xf86-input-mouse \
-           xf86-input-keyboard"
-
-PREFERRED_PROVIDER_virtual/kernel = "linux-rockchip-3.0"
-
+SERIAL_CONSOLES = "115200;ttyS2"
 KERNEL_IMAGETYPE = "zImage"
+KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
 
-IMAGE_FSTYPES += "ext4"
+PREFERRED_PROVIDER_virtual/bootloader ?= ""
 
-SERIAL_CONSOLES ?= "115200;ttyFIQ0"
-KBUILD_DEFCONFIG = "multi_v7_defconfig"
+IMAGE_FSTYPES += "ext4 squashfs"
