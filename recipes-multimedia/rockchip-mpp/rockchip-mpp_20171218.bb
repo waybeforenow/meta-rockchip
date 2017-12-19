@@ -5,7 +5,8 @@ include rockchip-mpp.inc
 
 TAG = "release_${PV}"
 SRC_URI = " \
-    git://github.com/rockchip-linux/mpp.git;tag=${TAG};nobranch=1 \
+	git://github.com/rockchip-linux/mpp.git;tag=${TAG};nobranch=1 \
+	file://0001-mpp-retrieve-available-input-packet-free-slots.patch \
 "
 
 S = "${WORKDIR}/git"
