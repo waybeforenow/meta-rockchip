@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://inc/rk_mpi.h;beginline=4;endline=14;md5=acbba394ae563
 inherit pkgconfig cmake
 
 EXTRA_OECMAKE = "     \
-    -DCMAKE_RKPLATFORM_ENABLE=ON   \
+    -DRKPLATFORM=ON   \
     -DHAVE_DRM=ON     \
 "
 
