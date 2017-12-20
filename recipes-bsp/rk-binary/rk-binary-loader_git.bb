@@ -7,7 +7,7 @@ NO_GENERIC_LICENSE[BINARY] = "LICENSE.TXT"
 DEPENDS = "rk-binary-native"
 
 SRC_URI = "git://github.com/rockchip-linux/rkbin.git"
-SRCREV = "76ec4622c56a5d077b9cfa0548d3dd4f494e71f5"
+SRCREV = "f64ded672836b47db3f6a0d04d8ccb4180fb3d55"
 S = "${WORKDIR}/git"
 
 LOADER_rk3399 ?= "rk33/rk3399_loader_*.bin"
@@ -46,8 +46,6 @@ deploy_prebuilt_image () {
 
 do_deploy_append_rk3328 () {
 	deploy_prebuilt_image
-	dd if=${DEPLOYDIR}/${DDR_BIN} of=${DEPLOYDIR}/TMP bs=4 skip=1
-	mv ${DEPLOYDIR}/TMP ${DEPLOYDIR}/${DDR_BIN}
 }
 
 do_deploy_append_rk3399 () {
