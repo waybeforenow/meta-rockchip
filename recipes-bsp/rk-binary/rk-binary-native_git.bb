@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=564e729dd65db6f65f911ce0cd340cf9"
 NO_GENERIC_LICENSE[BINARY] = "LICENSE.TXT"
 
 SRC_URI = "git://github.com/rockchip-linux/rkbin.git"
-SRCREV = "6dc367cc3353577c037c3c4e85fbed1a54fe84b5"
+SRCREV = "f64ded672836b47db3f6a0d04d8ccb4180fb3d55"
 S = "${WORKDIR}/git"
 
 do_install () {
