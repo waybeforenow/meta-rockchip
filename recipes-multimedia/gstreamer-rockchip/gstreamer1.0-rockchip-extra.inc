@@ -10,6 +10,8 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6d1e4aa87f6192354d3de840cf774d93"
 DEPENDS += "gstreamer1.0-plugins-bad"
 
+SRC_URI_remove = " file://gtk-doc-tweaks.patch"
+
 inherit gettext autotools pkgconfig
 
 PACKAGECONFIG ??= " \
