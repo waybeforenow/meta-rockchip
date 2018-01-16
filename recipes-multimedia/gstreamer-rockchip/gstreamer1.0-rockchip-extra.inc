@@ -16,7 +16,8 @@ inherit gettext autotools pkgconfig
 
 PACKAGECONFIG ??= " \
 	kms             \
-	rkv4l2			\
+	${@bb.utils.contains("DISTRO_FEATURES", "aarch64", "", \
+	   bb.utils.contains("DISTRO_FEATURES", "callconvention-hard", "rkv4l2", "", d), d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'rkximage', '', d)} \
 "
 PACKAGECONFIG[rkximage]	= "--enable-rkximage,--disable-rkximage,libdrm"
@@ -30,17 +31,4 @@ do_configure[prefuncs] = " delete_pkg_m4_file"
 do_configure() {
 	NOCONFIGURE=true ${S}/autogen.sh
 	oe_runconf
-}
-
-# There's only hardfp version available
-python __anonymous() {
-    tunes = d.getVar("TUNE_FEATURES", True)
-    if not tunes:
-        return
-    if tunes == "aarch64":
-        return
-    if "callconvention-hard" not in tunes:
-        pkgn = d.getVar("PN", True)
-        pkgv = d.getVar("PV", True)
-        raise bb.parse.SkipPackage("%s-%s ONLY supports hardfp mode for now" % (pkgn, pkgv))
 }
