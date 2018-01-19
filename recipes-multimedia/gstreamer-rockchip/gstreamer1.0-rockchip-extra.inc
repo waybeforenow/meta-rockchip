@@ -14,8 +14,8 @@ inherit gettext autotools pkgconfig
 
 PACKAGECONFIG ??= " \
 	kms             \
-	${@bb.utils.contains("DISTRO_FEATURES", "aarch64", "", \
-	   bb.utils.contains("DISTRO_FEATURES", "callconvention-hard", "rkv4l2", "", d), d)} \
+	${@bb.utils.contains("TUNE_FEATURES", "aarch64", "", \
+	   bb.utils.contains("TUNE_FEATURES", "callconvention-hard", "rkv4l2", "", d), d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'rkximage', '', d)} \
 "
 PACKAGECONFIG[rkximage]	= "--enable-rkximage,--disable-rkximage,libdrm"
@@ -29,4 +29,10 @@ do_configure[prefuncs] = " delete_pkg_m4_file"
 do_configure() {
 	NOCONFIGURE=true ${S}/autogen.sh
 	oe_runconf
+}
+
+# Move to rockchip-aiq.bb
+do_install_append() {
+	[ -e {D}/${libdir}/librk_aiq.so ] && rm {D}/${libdir}/librk_aiq.so 
+	echo "Return success"
 }
