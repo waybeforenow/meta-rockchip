@@ -16,12 +16,13 @@ BOOT_IMG = "${IMAGE_BASENAME}-${MACHINE}-boot.img"
 IDBLOADER = "idbloader.img"
 
 # Get From rk-binary loader
-DDR_BIN = "ddr.bin"
-LOADER_BIN = "loader.bin"
-MINILOADER_BIN = "miniloader.bin"
-ATF_BIN = "atf.bin"
+DDR_BIN = "rk-binary/ddr.bin"
+LOADER_BIN = "rk-binary/loader.bin"
+MINILOADER_BIN = "rk-binary/miniloader.bin"
+ATF_BIN = "rk-binary/atf.bin"
+TRUST_IMG = "rk-binary/trust.img"
+# Not from rk-binary
 UBOOT_IMG = "u-boot.img"
-TRUST_IMG = "trust.img"
 
 GPTIMG_APPEND_rk3036 = "console=tty1 console=ttyS2,115200n8 rw \
 	root=PARTUUID=69dad710-2c rootfstype=ext4 init=/sbin/init rootwait"
@@ -183,9 +184,9 @@ EOF
 generate_loader1_image () {
 
 	# Burn bootloader
-	mkimage -n ${SOC_FAMILY} -T rksd -d ${DEPLOY_DIR_IMAGE}/${SPL_BINARY} ${WORKDIR}/${IDBLOADER}
-	cat ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin >>${WORKDIR}/${IDBLOADER}
-	dd if=${WORKDIR}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=64
+	mkimage -n ${SOC_FAMILY} -T rksd -d ${DEPLOY_DIR_IMAGE}/${SPL_BINARY} ${DEPLOY_DIR_IMAGE}/${IDBLOADER}
+	cat ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin >>${DEPLOY_DIR_IMAGE}/${IDBLOADER}
+	dd if=${DEPLOY_DIR_IMAGE}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=64
 
 }
 
@@ -199,12 +200,12 @@ generate_aarch64_loader_image () {
 	ROOTFS_START=$(expr ${BOOT_START} + ${BOOT_SIZE})
 
 	# Burn bootloader
-	loaderimage --pack --uboot ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin ${WORKDIR}/${UBOOT_IMG} 0x200000
+	loaderimage --pack --uboot ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin ${DEPLOY_DIR_IMAGE}/${UBOOT_IMG} 0x200000
 
-	mkimage -n ${SOC_FAMILY} -T rksd -d ${DEPLOY_DIR_IMAGE}/${DDR_BIN} ${WORKDIR}/${IDBLOADER}
-	cat ${DEPLOY_DIR_IMAGE}/${MINILOADER_BIN} >>${WORKDIR}/${IDBLOADER}
+	mkimage -n ${SOC_FAMILY} -T rksd -d ${DEPLOY_DIR_IMAGE}/${DDR_BIN} ${DEPLOY_DIR_IMAGE}/${IDBLOADER}
+	cat ${DEPLOY_DIR_IMAGE}/${MINILOADER_BIN} >>${DEPLOY_DIR_IMAGE}/${IDBLOADER}
 
-	dd if=${WORKDIR}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER1_START}
-	dd if=${WORKDIR}/${UBOOT_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER2_START}
+	dd if=${DEPLOY_DIR_IMAGE}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER1_START}
+	dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER2_START}
 	dd if=${DEPLOY_DIR_IMAGE}/${TRUST_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${ATF_START}
 }
