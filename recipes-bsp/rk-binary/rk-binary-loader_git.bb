@@ -27,21 +27,25 @@ ATF_BIN = "atf.bin"
 UBOOT_IMG = "uboot.img"
 TRUST_IMG = "trust.img"
 
+RKBINARY_DEPLOY_DIR = "${DEPLOYDIR}/rk-binary"
+
 do_deploy () {
-	install -d ${DEPLOYDIR}
-	[ ${DDR} ] && cp ${S}/${DDR} ${DEPLOYDIR}/${DDR_BIN}
-	[ ${MINILOADER} ] && cp ${S}/${MINILOADER} ${DEPLOYDIR}/${MINILOADER_BIN}
-	[ ${LOADER} ] && cp ${S}/${LOADER} ${DEPLOYDIR}/${LOADER_BIN}
-	[ ${ATF} ] && cp ${S}/${ATF} ${DEPLOYDIR}/${ATF_BIN}
+	install -d ${RKBINARY_DEPLOY_DIR}
+	[ ${DDR} ] && cp ${S}/${DDR} ${RKBINARY_DEPLOY_DIR}/${DDR_BIN}
+	[ ${MINILOADER} ] && cp ${S}/${MINILOADER} ${RKBINARY_DEPLOY_DIR}/${MINILOADER_BIN}
+	[ ${LOADER} ] && cp ${S}/${LOADER} ${RKBINARY_DEPLOY_DIR}/${LOADER_BIN}
+	[ ${ATF} ] && cp ${S}/${ATF} ${RKBINARY_DEPLOY_DIR}/${ATF_BIN}
 
 	# Don't remove it!
 	echo "done"
 }
 
 deploy_prebuilt_image () {
-	install -d ${DEPLOYDIR}
-	[ -e {S}/img/${SOC_FAMILY}/${UBOOT_IMG} ] && cp ${S}/img/${SOC_FAMILY}/${UBOOT_IMG} ${DEPLOYDIR}/${UBOOT_IMG}
-	[ -e ${S}/img/${SOC_FAMILY}/${TRUST_IMG}  ] && cp ${S}/img/${SOC_FAMILY}/${TRUST_IMG} ${DEPLOYDIR}/${TRUST_IMG}
+	install -d ${RKBINARY_DEPLOY_DIR}
+	[ -e {S}/img/${SOC_FAMILY}/${UBOOT_IMG} ] && \
+		cp ${S}/img/${SOC_FAMILY}/${UBOOT_IMG} ${RKBINARY_DEPLOY_DIR}/${UBOOT_IMG}
+	[ -e ${S}/img/${SOC_FAMILY}/${TRUST_IMG}  ] && \
+		cp ${S}/img/${SOC_FAMILY}/${TRUST_IMG} ${RKBINARY_DEPLOY_DIR}/${TRUST_IMG}
 }
 
 do_deploy_append_rk3328 () {
