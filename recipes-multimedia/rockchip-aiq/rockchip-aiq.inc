@@ -5,6 +5,8 @@ DESCRIPTION = "AIQ library Binary for Rockchip ISP"
 SECTION = "libs"
 LICENSE = "CLOSED"
 
+PROVIDES = "librk_aiq.so"
+
 CPU_TYPE = ""
 python __anonymous() {
     tunes = d.getVar("TUNE_FEATURES", True)
@@ -36,4 +38,3 @@ do_install() {
 
 PACKAGES = "${PN}"
 FILES_${PN} += "${libdir}/*.so"
-RPROVIDES_${PN} += "librk_aiq.so"
