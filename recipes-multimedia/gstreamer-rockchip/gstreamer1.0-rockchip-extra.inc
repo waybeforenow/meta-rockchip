@@ -20,7 +20,7 @@ PACKAGECONFIG ??= " \
 "
 PACKAGECONFIG[rkximage]	= "--enable-rkximage,--disable-rkximage,libdrm"
 PACKAGECONFIG[kms]		= "--enable-kms,--disable-kms,libdrm"
-PACKAGECONFIG[rkv4l2]	= "--enable-rkv4l2,--disable-rkv4l2,rockchip-aiq,libv4l"
+PACKAGECONFIG[rkv4l2]	= "--enable-rkv4l2,--disable-rkv4l2,rockchip-aiq libv4l"
 
 EXTRA_OECONF_remove = "--disable-gtk-doc"
 
@@ -33,6 +33,6 @@ do_configure() {
 
 # Move to rockchip-aiq.bb
 do_install_append() {
-	[ -e {D}/${libdir}/librk_aiq.so ] && rm {D}/${libdir}/librk_aiq.so 
+	[ -e ${D}/${libdir}/librk_aiq.so ] && rm ${D}/${libdir}/librk_aiq.so
 	echo "Return success"
 }
