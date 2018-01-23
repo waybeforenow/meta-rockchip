@@ -36,5 +36,3 @@ do_install_append() {
 	[ -e ${D}/${libdir}/librk_aiq.so ] && rm ${D}/${libdir}/librk_aiq.so
 	echo "Return success"
 }
-# HACK: skip becuase it have too many problem with prebuilt library
-INSANE_SKIP_${PN}-rkv4l2 = "file-rdeps"

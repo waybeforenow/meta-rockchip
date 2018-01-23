@@ -5,6 +5,8 @@ DESCRIPTION = "AIQ library Binary for Rockchip ISP"
 SECTION = "libs"
 LICENSE = "CLOSED"
 
+DEPENDS = "patchelf-native"
+
 CPU_TYPE = ""
 python __anonymous() {
     tunes = d.getVar("TUNE_FEATURES", True)
@@ -31,7 +33,13 @@ INHIBIT_PACKAGE_STRIP = "1"
 
 do_install() {
 	install -m 755 -d ${D}/${libdir}
-	install ${S}/gst-libs/rkisp1/librk_aiq.so.${CPU_TYPE} ${D}/${libdir}/librk_aiq.so
+
+	# Workaround: librk_aiq.so provided by rk having no SONAME field in itroot
+	# so add it to fix rdepends problems
+	cp ${S}/gst-libs/rkisp1/librk_aiq.so.${CPU_TYPE} ${S}/gst-libs/rkisp1/librk_aiq.so.1
+	patchelf --set-soname "librk_aiq.so" ${S}/gst-libs/rkisp1/librk_aiq.so.1
+
+	oe_soinstall ${S}/gst-libs/rkisp1/librk_aiq.so.1 ${D}/${libdir}
 }
 
 PACKAGES = "${PN}"
