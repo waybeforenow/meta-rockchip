@@ -16,7 +16,7 @@ inherit gettext autotools pkgconfig
 
 PACKAGECONFIG ??= " \
 	kms             \
-	${@bb.utils.contains("TUNE_FEATURES", "aarch64", "", \
+	${@bb.utils.contains("TUNE_FEATURES", "aarch64", "rkv4l2", \
 	   bb.utils.contains("TUNE_FEATURES", "callconvention-hard", "rkv4l2", "", d), d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'rkximage', '', d)} \
 "
