@@ -186,7 +186,7 @@ generate_loader1_image () {
 	# Burn bootloader
 	mkimage -n ${SOC_FAMILY} -T rksd -d ${DEPLOY_DIR_IMAGE}/${SPL_BINARY} ${DEPLOY_DIR_IMAGE}/${IDBLOADER}
 	cat ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin >>${DEPLOY_DIR_IMAGE}/${IDBLOADER}
-	dd if=${DEPLOY_DIR_IMAGE}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=64
+	dd if=${DEPLOY_DIR_IMAGE}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER1_START}
 
 }
 
