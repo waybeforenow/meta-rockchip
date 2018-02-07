@@ -1,0 +1,25 @@
+From ed0c4bef3b40d3c2ccaafdcf478e593f5f937ee0 Mon Sep 17 00:00:00 2001
+From: Jacob Chen <jacob-chen@iotwrt.com>
+Date: Wed, 7 Feb 2018 09:37:44 +0800
+Subject: [PATCH] cmake: add sysroot in core_link_library
+
+Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+---
+ cmake/scripts/linux/Macros.cmake | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/cmake/scripts/linux/Macros.cmake b/cmake/scripts/linux/Macros.cmake
+index 9e8ebe6357..a8feda054e 100644
+--- a/cmake/scripts/linux/Macros.cmake
++++ b/cmake/scripts/linux/Macros.cmake
+@@ -41,6 +41,7 @@ function(core_link_library lib wraplib)
+                              -Wl,--no-whole-archive -lm
+                              -Wl,-soname,${wraplib}-${ARCH}${CMAKE_SHARED_MODULE_SUFFIX}
+                              -shared -o ${CMAKE_BINARY_DIR}/${wraplib}-${ARCH}${CMAKE_SHARED_MODULE_SUFFIX}
++                             --sysroot=$(STAGING_DIR_HOST)
+                              ${export}
+                      DEPENDS ${target} wrapper.def wrapper)
+ 
+-- 
+2.15.1
+
