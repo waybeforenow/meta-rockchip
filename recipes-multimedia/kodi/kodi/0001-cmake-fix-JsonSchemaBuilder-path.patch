@@ -1,0 +1,26 @@
+From 4cfb121d0416687372a0e015705678a3ed6a8070 Mon Sep 17 00:00:00 2001
+From: Jacob Chen <jacob-chen@iotwrt.com>
+Date: Tue, 6 Feb 2018 11:48:07 +0800
+Subject: [PATCH] cmake: fix JsonSchemaBuilder path
+
+Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+---
+ cmake/modules/FindJsonSchemaBuilder.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/modules/FindJsonSchemaBuilder.cmake b/cmake/modules/FindJsonSchemaBuilder.cmake
+index 14aa2f5113..f78fb63362 100644
+--- a/cmake/modules/FindJsonSchemaBuilder.cmake
++++ b/cmake/modules/FindJsonSchemaBuilder.cmake
+@@ -15,7 +15,7 @@ if(NOT TARGET JsonSchemaBuilder::JsonSchemaBuilder)
+                                                                  IMPORTED_LOCATION "${DEPENDENCIES_DIR}/bin/json-rpc/JsonSchemaBuilder")
+     else()
+       set_target_properties(JsonSchemaBuilder::JsonSchemaBuilder PROPERTIES
+-                                                                 IMPORTED_LOCATION "${NATIVEPREFIX}/bin/JsonSchemaBuilder")
++                                                                 IMPORTED_LOCATION "$(STAGING_BINDIR_NATIVE)/JsonSchemaBuilder")
+     endif()
+     set_target_properties(JsonSchemaBuilder::JsonSchemaBuilder PROPERTIES FOLDER Tools)
+   else()
+-- 
+2.15.1
+

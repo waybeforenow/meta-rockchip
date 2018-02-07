@@ -1,0 +1,32 @@
+From 4e41ef9fcd5f81f32c89ff9313c1c59100e8e142 Mon Sep 17 00:00:00 2001
+From: Jacob Chen <jacob-chen@iotwrt.com>
+Date: Tue, 6 Feb 2018 14:34:56 +0800
+Subject: [PATCH] cmake: use host native java
+
+Signed-off-by: Jacob Chen <jacob-chen@iotwrt.com>
+---
+ xbmc/interfaces/swig/CMakeLists.txt | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/xbmc/interfaces/swig/CMakeLists.txt b/xbmc/interfaces/swig/CMakeLists.txt
+index 70a851dd24..21345d2ae5 100644
+--- a/xbmc/interfaces/swig/CMakeLists.txt
++++ b/xbmc/interfaces/swig/CMakeLists.txt
+@@ -14,13 +14,12 @@ function(generate_file file)
+   add_custom_command(OUTPUT ${CPP_FILE}
+                      COMMAND ${SWIG_EXECUTABLE}
+                      ARGS -w401 -c++ -o ${file}.xml -xml -I${CMAKE_SOURCE_DIR}/xbmc -xmllang python ${CMAKE_CURRENT_SOURCE_DIR}/../swig/${file}
+-                     COMMAND ${Java_JAVA_EXECUTABLE}
++                     COMMAND /usr/bin/java
+                      ARGS -cp "${classpath}" groovy.ui.GroovyMain ${CMAKE_SOURCE_DIR}/tools/codegenerator/Generator.groovy ${file}.xml ${CMAKE_CURRENT_SOURCE_DIR}/../python/PythonSwig.cpp.template ${file}.cpp > ${devnull}
+                      DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/../swig/${file} ${CMAKE_CURRENT_SOURCE_DIR}/../python/PythonSwig.cpp.template)
+   set(SOURCES ${SOURCES} "${CPP_FILE}" PARENT_SCOPE)
+ endfunction()
+ 
+-find_package(Java COMPONENTS Runtime REQUIRED)
+ find_package(SWIG REQUIRED)
+ 
+ # The generated bindings
+-- 
+2.15.1
+
