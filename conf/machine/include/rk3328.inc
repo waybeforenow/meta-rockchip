@@ -6,6 +6,6 @@ require conf/machine/include/px30.inc
 
 RK_USE_COMPRESSED_KERNEL = "1"
 
-KBUILD_DEFCONFIG = "rk3328_linux_defconfig"
+KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
 
 RK_LOADER_BACKUP_NUM = "2"
