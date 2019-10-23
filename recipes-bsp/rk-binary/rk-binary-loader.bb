@@ -54,7 +54,7 @@ do_compile() {
 		loaderimage --pack --trustos "${TOS:-${TOSTA}}" "${RK_TRUST_IMG}" "${RK_TEE_ADDR}" --size "${RK_LOADER_SIZE}" "${RK_LOADER_BACKUP_NUM}"
 	else
 		case "${SOC_FAMILY}" in
-			px30|rk3326|rk3308|rk1808)
+			px30|rk3326|rk3308|rk3328|rk1808)
 				OPTIONS="--rsa 3"
 				;;
 			rk3368)
